@@ -1,6 +1,6 @@
 # This is workflow name
 name: Hello
-
+#run on a trigger
 on:
     push:
         branches: [mail]
@@ -10,6 +10,7 @@ jobs:
 
      #This is the name of job
     greet:
+        #this is github runner
         runs-on: ubuntu-latest
         steps:
         - name: say hello to user
