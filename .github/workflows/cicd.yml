@@ -13,7 +13,7 @@ jobs:
         run: echo "code clone from Github"
              
   build:
-    runs-on: ubuntu-latesst
+    runs-on: ubuntu-latest
     steps:
     - name: Build Docker Container
       run: echo "Docker Container build"
