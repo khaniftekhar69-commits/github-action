@@ -1,8 +1,6 @@
 name: iftekhar-portfolio
 
 on:
-    # push:
-    #     branches: [main]
     workflow_dispatch:
 
 permissions:
@@ -16,29 +14,24 @@ jobs:
 
         environment:
             name: github-pages
-            url: ${{ steps.deployment.outputs.page_url }} 
+            url: ${{ steps.deployment.outputs.page_url }}
 
         steps:
-            # get access to your Portfolio code via pre-built actions
-            # clones or checks out the code where this workflow is written
-            # STEP 1
+            # STEP 1: Checkout code
             - name: Checkout Code 
-              uses: actions/checkout@v6
+              uses: actions/checkout@v4
 
-            # setup GitHub Pages
-            # STEP 2
+            # STEP 2: Setup GitHub Pages
             - name: Setup GitHub Pages
-              uses: actions/configure-pages@v6
+              uses: actions/configure-pages@v4
 
-            # static code artifacts
-            # STEP 3
+            # STEP 3: Upload static site
             - name: Upload static files
-              uses: actions/upload-artifact@V6
+              uses: actions/upload-pages-artifact@v4
               with:
                 path: "."
-            
-            # Make page Live
-            # STEP 4
-            - name: Deploy to Github pages
+
+            # STEP 4: Deploy to GitHub Pages
+            - name: Deploy to GitHub Pages
               id: deployment
               uses: actions/deploy-pages@v4
