@@ -6,32 +6,33 @@ on:
 permissions:
     pages: write      
     id-token: write   
-    contents: read
-
+  
 jobs:
     deploy:
         runs-on: ubuntu-latest
+        steps:
+            # get access to your portfolio code via pre-built action
+            - name: Checkout Code 
+              uses: actions/checkout@v4
+              
+            # Setup GitHub Pages
+            - name: Setup GitHub Pages
+              uses: actions/configure-pages@v4
+
+            # static code artifacts
+            - name: Upload static files
+              uses: actions/upload-pages-artifact@v4
+              path: "."
+
+            # Deploy to GitHub Pages
+            - name: Deploy to GitHub Pages
+              uses: actions/deploy-pages@v4
 
         environment:
             name: github-pages
             url: ${{ steps.deployment.outputs.page_url }}
 
-        steps:
-            # STEP 1: Checkout code
-            - name: Checkout Code 
-              uses: actions/checkout@v4
-
-            # STEP 2: Setup GitHub Pages
-            - name: Setup GitHub Pages
-              uses: actions/configure-pages@v4
-
-            # STEP 3: Upload static site
-            - name: Upload static files
-              uses: actions/upload-pages-artifact@v4
               with:
                 path: "."
 
-            # STEP 4: Deploy to GitHub Pages
-            - name: Deploy to GitHub Pages
-              id: deployment
-              uses: actions/deploy-pages@v4
+            
