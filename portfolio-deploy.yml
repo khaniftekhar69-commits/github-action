@@ -1,7 +1,7 @@
 name: iftekhar-portfolio
 
-on:
-    workflow_dispatch:
+#on:
+    #workflow_dispatch:
 
 permissions:
     pages: write      
