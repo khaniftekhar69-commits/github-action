@@ -1,11 +1,11 @@
 # this will deploy the safe / secure / tested app to Prod server
-#name: Deploy To Server
+name: Deploy To Server
 
-#on: 
-    #workflow_call:
+on: 
+    workflow_call:
 
 
-#jobs:
+jobs:
     deploy:
         runs-on: ubuntu-latest
         env:
