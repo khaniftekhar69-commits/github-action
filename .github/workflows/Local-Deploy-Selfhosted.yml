@@ -1,8 +1,7 @@
 name: Local Deploy (Self Hosted)
 
 on:
-  push:
-    branches: [main]
+  workflow_call:
 
 jobs:
   deploy:
