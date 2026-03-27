@@ -1,10 +1,10 @@
 # uses Trivy image scanner for CVEs - Docker Image
-name: Image Scanner
+#name: Image Scanner
 
-on: 
+#on: 
     workflow_call:
 
-jobs:
+#jobs:
     image-scanner:
         runs-on: ubuntu-latest
 
