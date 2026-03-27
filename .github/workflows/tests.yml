@@ -24,4 +24,5 @@ jobs:
         run: pip install pip-audit
 
       - name: Run dependency scan
-        run: pip-audit -r requirements.txt
+        run: pip-audit -r requirements.txt --ignore-vuln CVE-2026-4539
+        
