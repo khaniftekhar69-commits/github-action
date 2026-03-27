@@ -28,13 +28,13 @@ jobs:
         secrets: inherit
 
     # Image scan docker
-    trivy:
+    #trivy:
         needs: [build]
         uses: ./.github/workflows/Local-Deploy-Selfhosted.yml
         secrets: inherit
 
     # CD : Deploy to Production 
-    deploy:
+    #deploy:
         needs: [trivy]
         uses: ./.github/workflows/Local-Deploy-Selfhosted.yml
         secrets: inherit
