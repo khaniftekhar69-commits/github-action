@@ -1,4 +1,4 @@
-name: Local Deploy (Self Hosted)
+name: self-hosted (Self Hosted)
 
 on:
   workflow_call:
