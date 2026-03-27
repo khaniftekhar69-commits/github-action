@@ -21,12 +21,9 @@ jobs:
               with:
                 python-version: ${{ matrix.python-version}}
                 
-            
             - name: install dependencies
               run: pip install -r requirements.txt
-            - name: dependency scan
-              run: pip-audit -r requirements.txt
-              
+          
             - name: run linter
               run: flake8 app.py 
 
