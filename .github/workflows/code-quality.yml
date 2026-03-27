@@ -23,7 +23,9 @@ jobs:
                 
             
             - name: install dependencies
-              run: pip install -r requirements.txt --ignore-vuln CVE-2026-4539
+              run: pip install -r requirements.txt
+            - name: dependency scan
+              run: pip-audit -r requirements.txt --ignore-vuln CVE-2026-4539
               
             - name: run linter
               run: flake8 app.py 
