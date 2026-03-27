@@ -1,12 +1,10 @@
 name: self-hosted (Self Hosted)
-
 on:
   workflow_call:
 
 jobs:
   deploy:
-    runs-on: self-hosted   #  LOCAL MACHINE RUNNER
-
+    runs-on: self-hosted  # LOCAL MACHINE RUNNER
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
