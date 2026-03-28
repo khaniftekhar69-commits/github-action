@@ -3,480 +3,524 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MAK Lifestyle — Premium Fashion Delhi</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>MAK MEN — Premium Men's Fashion Delhi</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --gold: #C9A84C;
-  --gold-light: #E8D5A3;
-  --cream: #FAF7F2;
-  --dark: #1A1410;
-  --charcoal: #2D2520;
-  --muted: #8C7B6E;
-  --border: rgba(201,168,76,0.2);
-  --white: #ffffff;
+  --black: #0A0A0A;
+  --dark: #111111;
+  --card-bg: #161616;
+  --gold: #C8A84B;
+  --gold-dim: rgba(200,168,75,0.15);
+  --red: #D42B2B;
+  --white: #F5F5F0;
+  --muted: #7A7A72;
+  --border: rgba(255,255,255,0.08);
+  --border-gold: rgba(200,168,75,0.25);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--cream);
-  color: var(--dark);
+  font-family: 'Barlow', sans-serif;
+  background: var(--black);
+  color: var(--white);
   overflow-x: hidden;
 }
 
-/* SCROLLBAR */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--cream); }
-::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: var(--gold); }
 
-/* NAV */
+/* ─── NOISE OVERLAY ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.4;
+}
+
+/* ─── NAV ─── */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  padding: 20px 48px;
+  padding: 20px 56px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   transition: all 0.4s;
-  background: transparent;
 }
 nav.scrolled {
-  background: rgba(250,247,242,0.96);
-  backdrop-filter: blur(12px);
-  padding: 14px 48px;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(20px);
+  padding: 14px 56px;
   border-bottom: 1px solid var(--border);
-  box-shadow: 0 2px 30px rgba(0,0,0,0.05);
 }
 
 .logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: var(--dark);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: var(--white);
   text-decoration: none;
-  letter-spacing: 3px;
-  text-transform: uppercase;
+  letter-spacing: 4px;
 }
 .logo span { color: var(--gold); }
 
 .nav-links {
   display: flex;
-  gap: 36px;
+  gap: 40px;
   list-style: none;
 }
 .nav-links a {
-  color: var(--charcoal);
+  color: rgba(245,245,240,0.6);
   text-decoration: none;
+  font-family: 'Barlow Condensed', sans-serif;
   font-size: 0.8rem;
-  letter-spacing: 1.5px;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 500;
   transition: color 0.2s;
-  position: relative;
-}
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -3px; left: 0; right: 100%;
-  height: 1px;
-  background: var(--gold);
-  transition: right 0.3s;
 }
 .nav-links a:hover { color: var(--gold); }
-.nav-links a:hover::after { right: 0; }
 
-.nav-icons {
+.nav-right {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 24px;
 }
-.nav-icon {
+.nav-btn {
   background: none;
   border: none;
+  color: rgba(245,245,240,0.7);
   cursor: pointer;
-  color: var(--dark);
   font-size: 1rem;
-  position: relative;
   transition: color 0.2s;
+  position: relative;
 }
-.nav-icon:hover { color: var(--gold); }
-.cart-count {
+.nav-btn:hover { color: var(--gold); }
+.cart-badge {
   position: absolute;
   top: -8px; right: -8px;
   background: var(--gold);
-  color: white;
-  font-size: 0.6rem;
+  color: var(--black);
+  font-size: 0.55rem;
+  font-weight: 700;
   width: 16px; height: 16px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 500;
 }
 
-/* HERO */
+/* ─── HERO ─── */
 .hero {
   height: 100vh;
   min-height: 700px;
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  align-items: flex-end;
   overflow: hidden;
 }
 
-.hero-left {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 120px 60px 80px;
-  position: relative;
-  z-index: 2;
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0A0A0A 0%, #1a1208 50%, #0A0A0A 100%);
+}
+.hero-bg-img {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 55%;
+  object-fit: cover;
+  object-position: top center;
+  filter: brightness(0.5) contrast(1.1);
+  mix-blend-mode: luminosity;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--black) 35%, transparent 65%), 
+              linear-gradient(to top, var(--black) 0%, transparent 40%);
 }
 
-.hero-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--gold);
-  font-size: 0.7rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  margin-bottom: 24px;
-  font-weight: 500;
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 56px 80px;
+  max-width: 700px;
 }
-.hero-tag::before {
-  content: '';
-  display: block;
-  width: 30px; height: 1px;
-  background: var(--gold);
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.eyebrow-line { width: 40px; height: 1px; background: var(--gold); }
+.eyebrow-text {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
 }
 
 .hero h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3.5rem, 6vw, 5.5rem);
-  font-weight: 300;
-  line-height: 1.1;
-  color: var(--dark);
-  margin-bottom: 24px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(5rem, 11vw, 9rem);
+  line-height: 0.92;
+  letter-spacing: 2px;
+  margin-bottom: 28px;
 }
-.hero h1 em {
-  font-style: italic;
-  color: var(--gold);
+.hero h1 .outline {
+  -webkit-text-stroke: 1px rgba(245,245,240,0.25);
+  color: transparent;
 }
+.hero h1 .gold { color: var(--gold); }
 
 .hero-desc {
-  color: var(--muted);
-  font-size: 0.95rem;
+  font-size: 1rem;
+  color: rgba(245,245,240,0.55);
   line-height: 1.8;
-  max-width: 380px;
-  margin-bottom: 40px;
+  max-width: 420px;
+  margin-bottom: 44px;
   font-weight: 300;
 }
 
-.hero-buttons {
+.hero-cta {
   display: flex;
   gap: 16px;
   align-items: center;
 }
 
-.btn-primary {
-  background: var(--dark);
-  color: var(--white);
-  padding: 14px 36px;
+.btn-gold {
+  background: var(--gold);
+  color: var(--black);
+  padding: 14px 40px;
   border: none;
-  font-size: 0.8rem;
-  letter-spacing: 2px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 3px;
   text-transform: uppercase;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s;
-  font-family: 'DM Sans', sans-serif;
   text-decoration: none;
   display: inline-block;
+  transition: all 0.3s;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 100%, 10px 100%);
 }
-.btn-primary:hover {
-  background: var(--gold);
+.btn-gold:hover {
+  background: var(--white);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(201,168,76,0.3);
+  box-shadow: 0 12px 30px rgba(200,168,75,0.25);
 }
 
-.btn-outline {
+.btn-ghost {
   background: transparent;
-  color: var(--dark);
-  padding: 14px 36px;
-  border: 1px solid var(--dark);
-  font-size: 0.8rem;
-  letter-spacing: 2px;
+  color: var(--white);
+  padding: 13px 36px;
+  border: 1px solid rgba(245,245,240,0.25);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 3px;
   text-transform: uppercase;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.3s;
-  font-family: 'DM Sans', sans-serif;
-  text-decoration: none;
 }
-.btn-outline:hover {
-  background: var(--dark);
-  color: white;
-}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
 
-.hero-right {
-  position: relative;
-  overflow: hidden;
-}
-.hero-right img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  filter: brightness(0.95);
-}
-.hero-badge {
+.hero-stats {
   position: absolute;
-  bottom: 40px;
-  left: -30px;
-  background: var(--white);
-  padding: 20px 28px;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+  right: 56px;
+  bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  z-index: 2;
 }
-.hero-badge-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2rem;
-  font-weight: 600;
+.stat-item { text-align: right; }
+.stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
   color: var(--gold);
+  letter-spacing: 2px;
+  line-height: 1;
 }
-.hero-badge-sub {
-  font-size: 0.7rem;
-  letter-spacing: 1px;
-  color: var(--muted);
+.stat-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 2px;
   text-transform: uppercase;
+  color: var(--muted);
 }
 
-/* MARQUEE */
-.marquee-wrap {
-  background: var(--dark);
-  padding: 14px 0;
+/* ─── TICKER ─── */
+.ticker {
+  background: var(--gold);
+  padding: 10px 0;
   overflow: hidden;
   white-space: nowrap;
 }
-.marquee {
+.ticker-inner {
   display: inline-block;
-  animation: marquee 20s linear infinite;
+  animation: ticker 25s linear infinite;
 }
-.marquee span {
-  color: var(--gold-light);
-  font-size: 0.7rem;
+.ticker-inner span {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
-  margin: 0 40px;
+  color: var(--black);
+  margin: 0 32px;
 }
-.marquee span.dot {
-  color: var(--gold);
-  margin: 0;
-}
-@keyframes marquee {
+.ticker-dot { color: rgba(0,0,0,0.35); }
+@keyframes ticker {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
 
-/* CATEGORIES */
-.categories-section {
-  padding: 80px 48px;
+/* ─── SECTION COMMONS ─── */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
 }
-.section-header {
+.section-label span {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+}
+.section-label::before {
+  content: '';
+  width: 30px; height: 1px;
+  background: var(--gold);
+}
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  letter-spacing: 2px;
+  line-height: 1;
+}
+.section-title .dim {
+  -webkit-text-stroke: 1px rgba(245,245,240,0.2);
+  color: transparent;
+}
+
+/* ─── CATEGORIES ─── */
+.categories {
+  padding: 80px 56px;
+}
+.cat-header {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   margin-bottom: 48px;
 }
-.section-tag {
-  color: var(--gold);
-  font-size: 0.7rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.section-tag::before {
-  content: '';
-  display: block;
-  width: 24px; height: 1px;
-  background: var(--gold);
-}
-.section-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.8rem;
-  font-weight: 300;
-  line-height: 1.2;
-}
-.section-title em { font-style: italic; color: var(--gold); }
 .view-all {
-  color: var(--dark);
+  font-family: 'Barlow Condensed', sans-serif;
   font-size: 0.75rem;
   letter-spacing: 2px;
   text-transform: uppercase;
+  color: var(--muted);
   text-decoration: none;
-  border-bottom: 1px solid var(--dark);
-  padding-bottom: 2px;
-  transition: color 0.2s, border-color 0.2s;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 3px;
+  transition: all 0.2s;
 }
 .view-all:hover { color: var(--gold); border-color: var(--gold); }
 
 .cat-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  grid-template-rows: 300px 300px;
-  gap: 12px;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  grid-template-rows: 400px;
+  gap: 8px;
 }
 .cat-card {
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  background: #e8e0d5;
+  background: var(--card-bg);
 }
-.cat-card:first-child { grid-row: 1 / 3; }
 .cat-card img {
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
-  filter: brightness(0.85);
+  filter: brightness(0.65) saturate(0.8);
+  transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.4s;
 }
-.cat-card:hover img { transform: scale(1.06); }
-.cat-info {
+.cat-card:hover img { transform: scale(1.08); filter: brightness(0.55) saturate(0.9); }
+.cat-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.1) 60%);
+}
+.cat-content {
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  padding: 24px;
-  background: linear-gradient(to top, rgba(26,20,16,0.85) 0%, transparent 100%);
+  padding: 28px 24px;
+}
+.cat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  color: rgba(200,168,75,0.15);
+  line-height: 1;
+  letter-spacing: 2px;
 }
 .cat-name {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 1.6rem;
-  font-weight: 400;
-  color: white;
+  letter-spacing: 2px;
+  color: var(--white);
   margin-bottom: 4px;
 }
 .cat-count {
+  font-family: 'Barlow Condensed', sans-serif;
   font-size: 0.7rem;
-  color: var(--gold-light);
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   text-transform: uppercase;
+  color: var(--gold);
 }
-
-/* PRODUCTS */
-.products-section {
-  padding: 80px 48px;
-  background: var(--white);
-}
-
-.products-filter {
+.cat-card .cat-arrow {
+  position: absolute;
+  top: 20px; right: 20px;
+  width: 32px; height: 32px;
+  border: 1px solid rgba(200,168,75,0.3);
   display: flex;
-  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-size: 0.9rem;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: all 0.3s;
+}
+.cat-card:hover .cat-arrow { opacity: 1; transform: translateY(0); }
+
+/* ─── PRODUCTS ─── */
+.products-section {
+  padding: 80px 56px;
+  background: var(--dark);
+}
+.products-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
   margin-bottom: 40px;
+}
+.filter-row {
+  display: flex;
+  gap: 6px;
   flex-wrap: wrap;
+  margin-bottom: 40px;
 }
 .filter-btn {
-  padding: 8px 24px;
+  padding: 8px 22px;
   border: 1px solid var(--border);
   background: transparent;
   color: var(--muted);
+  font-family: 'Barlow Condensed', sans-serif;
   font-size: 0.75rem;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   text-transform: uppercase;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s;
-  font-family: 'DM Sans', sans-serif;
+  transition: all 0.25s;
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 100%, 6px 100%);
 }
 .filter-btn:hover, .filter-btn.active {
-  background: var(--dark);
-  color: white;
-  border-color: var(--dark);
+  background: var(--gold);
+  color: var(--black);
+  border-color: var(--gold);
 }
 
 .products-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: 16px;
 }
-
-.product-card {
-  cursor: pointer;
-  group: true;
-}
+.product-card { cursor: pointer; }
 .product-img {
   position: relative;
   overflow: hidden;
-  background: #f0ebe3;
+  background: var(--card-bg);
   aspect-ratio: 3/4;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 .product-img img {
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   object-fit: cover;
-  transition: transform 0.5s;
+  transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+  filter: brightness(0.9);
 }
-.product-card:hover .product-img img { transform: scale(1.05); }
+.product-card:hover .product-img img { transform: scale(1.06); filter: brightness(0.85); }
 
-.product-badge {
+.p-badge {
   position: absolute;
-  top: 12px; left: 12px;
-  background: var(--gold);
-  color: white;
-  font-size: 0.6rem;
-  letter-spacing: 1px;
+  top: 10px; left: 0;
+  padding: 4px 12px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  padding: 4px 10px;
-  font-weight: 500;
+  font-weight: 600;
 }
-.product-badge.sale { background: #C0392B; }
-.product-badge.new-in { background: var(--dark); }
+.p-badge.new { background: var(--gold); color: var(--black); }
+.p-badge.sale { background: var(--red); color: white; }
+.p-badge.hot { background: var(--white); color: var(--black); }
 
 .product-actions {
   position: absolute;
-  bottom: -50px;
-  left: 0; right: 0;
-  padding: 12px;
+  bottom: 0; left: 0; right: 0;
   display: flex;
-  gap: 8px;
-  transition: bottom 0.3s;
+  gap: 4px;
+  padding: 8px;
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
 }
-.product-card:hover .product-actions { bottom: 0; }
-
-.action-btn {
+.product-card:hover .product-actions { transform: translateY(0); }
+.p-action-btn {
   flex: 1;
-  background: var(--dark);
-  color: white;
+  background: var(--black);
+  color: var(--white);
   border: none;
-  padding: 10px;
+  padding: 10px 8px;
+  font-family: 'Barlow Condensed', sans-serif;
   font-size: 0.7rem;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   text-transform: uppercase;
+  font-weight: 600;
   cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
   transition: background 0.2s;
 }
-.action-btn:hover { background: var(--gold); }
-.action-btn.wish {
+.p-action-btn:hover { background: var(--gold); color: var(--black); }
+.p-action-btn.wish {
   flex: 0 0 40px;
-  background: white;
-  color: var(--dark);
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(8px);
 }
-.action-btn.wish:hover { background: var(--gold); color: white; }
 
 .product-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
-  font-weight: 400;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--white);
   margin-bottom: 4px;
-  color: var(--dark);
 }
 .product-sub {
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   color: var(--muted);
   margin-bottom: 8px;
   letter-spacing: 0.5px;
@@ -486,255 +530,307 @@ nav.scrolled {
   align-items: center;
   gap: 10px;
 }
-.price-current {
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--dark);
+.p-price {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--gold);
 }
-.price-old {
+.p-old {
   font-size: 0.85rem;
   color: var(--muted);
   text-decoration: line-through;
 }
-.price-discount {
+.p-off {
+  font-family: 'Barlow Condensed', sans-serif;
   font-size: 0.7rem;
-  color: #C0392B;
-  font-weight: 500;
+  color: var(--red);
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
-/* BANNER */
-.banner-section {
+/* ─── PROMO BANNER ─── */
+.promo-strip {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: 500px;
 }
-.banner-img {
-  position: relative;
-  overflow: hidden;
-}
-.banner-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s;
-}
-.banner-img:hover img { transform: scale(1.04); }
-.banner-content {
-  background: var(--dark);
+.promo-dark, .promo-gold {
+  padding: 80px 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 60px;
 }
-.banner-content .section-tag { color: var(--gold-light); }
-.banner-content .section-tag::before { background: var(--gold-light); }
-.banner-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 3rem;
-  font-weight: 300;
-  color: white;
-  line-height: 1.2;
-  margin-bottom: 16px;
+.promo-dark { background: var(--black); }
+.promo-gold { background: var(--gold); }
+.promo-dark .section-label span { color: var(--gold); }
+.promo-gold .section-label::before { background: var(--black); }
+.promo-gold .section-label span { color: var(--black); }
+.promo-dark .section-title { color: var(--white); }
+.promo-gold .section-title { color: var(--black); font-size: 3.5rem; }
+.promo-dark p { color: var(--muted); font-size: 0.9rem; line-height: 1.8; margin: 16px 0 32px; font-weight: 300; }
+.promo-gold p { color: rgba(0,0,0,0.6); font-size: 0.9rem; line-height: 1.8; margin: 16px 0 32px; font-weight: 300; }
+.promo-img-wrap {
+  position: relative;
+  overflow: hidden;
 }
-.banner-title em { font-style: italic; color: var(--gold); }
-.banner-desc {
-  color: rgba(255,255,255,0.6);
-  font-size: 0.9rem;
-  line-height: 1.8;
-  margin-bottom: 36px;
-  font-weight: 300;
+.promo-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  min-height: 460px;
+  filter: brightness(0.6) contrast(1.1);
+}
+.promo-img-tag {
+  position: absolute;
+  top: 30px; left: 30px;
+  background: var(--gold);
+  color: var(--black);
+  padding: 8px 18px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
-/* FEATURES */
-.features-section {
-  padding: 60px 48px;
+.btn-dark {
+  background: var(--black);
+  color: var(--gold);
+  padding: 14px 36px;
+  border: 1px solid var(--black);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  transition: all 0.3s;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 100%, 10px 100%);
+}
+.btn-dark:hover { background: var(--dark); }
+
+/* ─── FEATURES ─── */
+.features {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0;
   border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
 }
-.feature-item {
-  padding: 40px 36px;
-  text-align: center;
+.feat {
+  padding: 44px 36px;
   border-right: 1px solid var(--border);
+  text-align: center;
+  position: relative;
 }
-.feature-item:last-child { border-right: none; }
-.feature-icon {
-  font-size: 1.5rem;
-  margin-bottom: 16px;
-  display: block;
+.feat:last-child { border-right: none; }
+.feat::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  width: 0; height: 2px;
+  background: var(--gold);
+  transform: translateX(-50%);
+  transition: width 0.4s;
 }
-.feature-title {
-  font-family: 'Cormorant Garamond', serif;
+.feat:hover::before { width: 60%; }
+.feat-icon { font-size: 1.6rem; margin-bottom: 14px; display: block; }
+.feat-title {
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 1.2rem;
-  font-weight: 400;
+  letter-spacing: 2px;
   margin-bottom: 8px;
-  color: var(--dark);
+  color: var(--white);
 }
-.feature-desc {
+.feat-desc {
   font-size: 0.8rem;
   color: var(--muted);
   line-height: 1.7;
 }
 
-/* TESTIMONIALS */
-.testimonials-section {
-  padding: 80px 48px;
-  background: var(--dark);
-  text-align: center;
+/* ─── TESTIMONIALS ─── */
+.testimonials {
+  padding: 80px 56px;
+  background: var(--card-bg);
 }
-.testimonials-section .section-tag { justify-content: center; color: var(--gold); }
-.testimonials-section .section-tag::before { display: none; }
-.testimonials-section .section-title { color: white; }
-.testimonials-grid {
+.test-header { text-align: center; margin-bottom: 60px; }
+.test-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 48px;
-  text-align: left;
+  gap: 16px;
 }
-.testimonial-card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(201,168,76,0.15);
+.test-card {
   padding: 32px;
+  border: 1px solid var(--border);
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s;
 }
-.stars { color: var(--gold); font-size: 0.8rem; margin-bottom: 16px; }
-.testimonial-text {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
-  font-style: italic;
-  color: rgba(255,255,255,0.85);
+.test-card:hover { border-color: var(--border-gold); }
+.test-card::before {
+  content: '"';
+  position: absolute;
+  top: -10px; left: 20px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 6rem;
+  color: var(--gold-dim);
+  line-height: 1;
+}
+.stars { color: var(--gold); font-size: 0.75rem; margin-bottom: 16px; letter-spacing: 2px; }
+.test-text {
+  font-size: 0.95rem;
+  color: rgba(245,245,240,0.7);
   line-height: 1.8;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  font-style: italic;
   font-weight: 300;
+  position: relative;
 }
-.testimonial-author {
+.test-author {
+  font-family: 'Barlow Condensed', sans-serif;
   font-size: 0.75rem;
-  color: var(--gold);
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
 }
 
-/* NEWSLETTER */
-.newsletter-section {
-  padding: 80px 48px;
-  background: var(--cream);
+/* ─── NEWSLETTER ─── */
+.newsletter {
+  padding: 80px 56px;
+  background: var(--black);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 80px;
   align-items: center;
+  border-top: 1px solid var(--border);
 }
-.newsletter-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.5rem;
-  font-weight: 300;
-  line-height: 1.3;
+.nl-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  letter-spacing: 3px;
+  line-height: 1.1;
   margin-bottom: 12px;
 }
-.newsletter-title em { font-style: italic; color: var(--gold); }
-.newsletter-desc {
-  color: var(--muted);
-  font-size: 0.9rem;
-  line-height: 1.8;
-  font-weight: 300;
-}
-.newsletter-form {
+.nl-title span { color: var(--gold); }
+.nl-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.8; font-weight: 300; }
+.nl-form {
   display: flex;
-  gap: 0;
 }
-.newsletter-form input {
+.nl-form input {
   flex: 1;
   padding: 16px 20px;
+  background: var(--card-bg);
   border: 1px solid var(--border);
-  background: white;
-  font-size: 0.85rem;
+  border-right: none;
+  color: var(--white);
+  font-size: 0.9rem;
+  font-family: 'Barlow', sans-serif;
   outline: none;
-  font-family: 'DM Sans', sans-serif;
-  color: var(--dark);
+  transition: border-color 0.2s;
 }
-.newsletter-form input::placeholder { color: var(--muted); }
-.newsletter-form input:focus { border-color: var(--gold); }
-.newsletter-form button {
-  background: var(--dark);
-  color: white;
+.nl-form input::placeholder { color: var(--muted); }
+.nl-form input:focus { border-color: var(--gold); }
+.nl-form button {
+  background: var(--gold);
+  color: var(--black);
   padding: 16px 28px;
   border: none;
+  font-family: 'Barlow Condensed', sans-serif;
   font-size: 0.75rem;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   text-transform: uppercase;
+  font-weight: 700;
   cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
   transition: background 0.2s;
   white-space: nowrap;
+  clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
 }
-.newsletter-form button:hover { background: var(--gold); }
+.nl-form button:hover { background: var(--white); }
 
-/* FOOTER */
+/* ─── FOOTER ─── */
 footer {
-  background: var(--charcoal);
-  padding: 60px 48px 30px;
+  background: var(--dark);
+  padding: 60px 56px 28px;
+  border-top: 1px solid var(--border);
 }
-.footer-top {
+.footer-grid {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 48px;
+  gap: 56px;
   padding-bottom: 48px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  margin-bottom: 30px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 28px;
 }
-.footer-brand .logo { color: white; display: block; margin-bottom: 16px; }
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: 4px;
+  display: block;
+  margin-bottom: 14px;
+}
+.footer-logo span { color: var(--gold); }
 .footer-brand p {
-  color: rgba(255,255,255,0.4);
+  color: var(--muted);
   font-size: 0.85rem;
   line-height: 1.8;
   margin-bottom: 24px;
   font-weight: 300;
 }
-.social-links { display: flex; gap: 12px; }
-.social-link {
+.socials { display: flex; gap: 10px; }
+.social {
   width: 36px; height: 36px;
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255,255,255,0.5);
+  color: var(--muted);
   text-decoration: none;
   font-size: 0.75rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  letter-spacing: 1px;
   transition: all 0.2s;
 }
-.social-link:hover { border-color: var(--gold); color: var(--gold); }
+.social:hover { border-color: var(--gold); color: var(--gold); }
 .footer-col h4 {
+  font-family: 'Barlow Condensed', sans-serif;
   font-size: 0.7rem;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--gold);
   margin-bottom: 20px;
-  font-weight: 500;
+  font-weight: 600;
 }
 .footer-col a {
   display: block;
-  color: rgba(255,255,255,0.45);
+  color: var(--muted);
   text-decoration: none;
   font-size: 0.85rem;
   margin-bottom: 10px;
   transition: color 0.2s;
   font-weight: 300;
 }
-.footer-col a:hover { color: white; }
+.footer-col a:hover { color: var(--white); }
 .footer-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.75rem;
-  color: rgba(255,255,255,0.25);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
 }
+.footer-bottom span:last-child { color: var(--gold); }
 
-/* CART SIDEBAR */
+/* ─── CART ─── */
 .cart-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.7);
   z-index: 200;
   opacity: 0;
   pointer-events: none;
@@ -743,37 +839,40 @@ footer {
 .cart-overlay.open { opacity: 1; pointer-events: all; }
 .cart-sidebar {
   position: fixed;
-  top: 0; right: -420px; bottom: 0;
-  width: 420px;
-  background: var(--white);
+  top: 0; right: -440px; bottom: 0;
+  width: 440px;
+  background: var(--dark);
   z-index: 201;
   transition: right 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
   display: flex;
   flex-direction: column;
+  border-left: 1px solid var(--border);
 }
 .cart-sidebar.open { right: 0; }
-.cart-header {
+.cart-head {
   padding: 24px 28px;
   border-bottom: 1px solid var(--border);
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.cart-header h3 {
-  font-family: 'Cormorant Garamond', serif;
+.cart-head h3 {
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 1.4rem;
-  font-weight: 400;
+  letter-spacing: 3px;
+  color: var(--white);
 }
-.cart-close {
+.cart-close-btn {
   background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
+  border: 1px solid var(--border);
   color: var(--muted);
-  transition: color 0.2s;
+  width: 32px; height: 32px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s;
 }
-.cart-close:hover { color: var(--dark); }
-.cart-items { flex: 1; overflow-y: auto; padding: 20px 28px; }
+.cart-close-btn:hover { border-color: var(--gold); color: var(--gold); }
+.cart-body { flex: 1; overflow-y: auto; padding: 20px 28px; }
 .cart-item {
   display: flex;
   gap: 16px;
@@ -781,395 +880,442 @@ footer {
   border-bottom: 1px solid var(--border);
 }
 .cart-item-img {
-  width: 80px; height: 96px;
+  width: 76px; height: 96px;
   object-fit: cover;
-  background: #f0ebe3;
+  background: var(--card-bg);
   flex-shrink: 0;
+  filter: brightness(0.9);
 }
 .cart-item-info { flex: 1; }
-.cart-item-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1rem;
+.cii-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 600;
   margin-bottom: 4px;
 }
-.cart-item-detail { font-size: 0.75rem; color: var(--muted); margin-bottom: 8px; }
-.cart-item-price { font-size: 0.9rem; font-weight: 500; color: var(--gold); }
-.cart-item-qty {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 8px;
+.cii-detail { font-size: 0.75rem; color: var(--muted); margin-bottom: 8px; }
+.cii-price {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  color: var(--gold);
+  font-weight: 600;
 }
-.qty-btn {
-  width: 24px; height: 24px;
+.qty-row { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.q-btn {
+  width: 26px; height: 26px;
   border: 1px solid var(--border);
   background: none;
+  color: var(--white);
   cursor: pointer;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
 }
-.qty-btn:hover { background: var(--dark); color: white; border-color: var(--dark); }
-.qty-num { font-size: 0.85rem; min-width: 20px; text-align: center; }
-.cart-footer {
+.q-btn:hover { background: var(--gold); color: var(--black); border-color: var(--gold); }
+.q-num { font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; min-width: 20px; text-align: center; }
+.cart-foot {
   padding: 24px 28px;
   border-top: 1px solid var(--border);
 }
-.cart-total {
+.cart-subtotal {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 16px;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 1.2rem;
-}
-.cart-total span:last-child { color: var(--gold); font-weight: 600; }
-.cart-checkout {
-  width: 100%;
-  background: var(--dark);
-  color: white;
-  padding: 16px;
-  border: none;
-  font-size: 0.8rem;
   letter-spacing: 2px;
+}
+.cart-subtotal span:last-child { color: var(--gold); }
+.checkout-btn {
+  width: 100%;
+  background: var(--gold);
+  color: var(--black);
+  padding: 15px;
+  border: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 3px;
   text-transform: uppercase;
+  font-weight: 700;
   cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
   transition: background 0.2s;
   margin-bottom: 10px;
 }
-.cart-checkout:hover { background: var(--gold); }
-.cart-continue {
+.checkout-btn:hover { background: var(--white); }
+.continue-btn {
   width: 100%;
   background: transparent;
   color: var(--muted);
   padding: 10px;
   border: none;
+  font-family: 'Barlow Condensed', sans-serif;
   font-size: 0.75rem;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
   transition: color 0.2s;
 }
-.cart-continue:hover { color: var(--dark); }
+.continue-btn:hover { color: var(--white); }
 
-/* TOAST */
+/* ─── TOAST ─── */
 .toast {
   position: fixed;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%) translateY(100px);
-  background: var(--dark);
-  color: white;
-  padding: 14px 28px;
+  bottom: 30px; left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--gold);
+  color: var(--black);
+  padding: 12px 28px;
+  font-family: 'Barlow Condensed', sans-serif;
   font-size: 0.8rem;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
   z-index: 300;
-  transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
-  white-space: nowrap;
+  transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+  clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
 }
 .toast.show { transform: translateX(-50%) translateY(0); }
 
-/* ANIMATIONS */
+/* ─── ANIMATIONS ─── */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(30px); }
+  from { opacity: 0; transform: translateY(40px); }
   to { opacity: 1; transform: translateY(0); }
 }
-.hero-left > * {
-  animation: fadeUp 0.8s ease forwards;
+.hero-content > * {
+  animation: fadeUp 0.9s ease forwards;
   opacity: 0;
 }
-.hero-left > *:nth-child(1) { animation-delay: 0.2s; }
-.hero-left > *:nth-child(2) { animation-delay: 0.35s; }
-.hero-left > *:nth-child(3) { animation-delay: 0.5s; }
-.hero-left > *:nth-child(4) { animation-delay: 0.65s; }
+.hero-content > *:nth-child(1) { animation-delay: 0.15s; }
+.hero-content > *:nth-child(2) { animation-delay: 0.3s; }
+.hero-content > *:nth-child(3) { animation-delay: 0.45s; }
+.hero-content > *:nth-child(4) { animation-delay: 0.6s; }
 
-@media (max-width: 1024px) {
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1100px) {
   .products-grid { grid-template-columns: repeat(3, 1fr); }
-  .cat-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-  .cat-card:first-child { grid-row: auto; }
-  .features-section { grid-template-columns: repeat(2, 1fr); }
-  .feature-item:nth-child(2) { border-right: none; }
+  .cat-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: 280px 280px; }
 }
-
 @media (max-width: 768px) {
   nav { padding: 16px 20px; }
+  nav.scrolled { padding: 12px 20px; }
   .nav-links { display: none; }
-  .hero { grid-template-columns: 1fr; }
-  .hero-right { display: none; }
-  .hero-left { padding: 100px 24px 60px; }
-  .categories-section { padding: 50px 20px; }
-  .cat-grid { grid-template-columns: 1fr; }
+  .hero-content { padding: 0 20px 60px; }
+  .hero h1 { font-size: 4.5rem; }
+  .hero-stats { display: none; }
+  .categories { padding: 50px 20px; }
+  .cat-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .cat-card { height: 240px; }
   .products-section { padding: 50px 20px; }
-  .products-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  .banner-section { grid-template-columns: 1fr; }
-  .features-section { grid-template-columns: repeat(2, 1fr); padding: 40px 20px; }
-  .testimonials-section { padding: 50px 20px; }
-  .testimonials-grid { grid-template-columns: 1fr; }
-  .newsletter-section { grid-template-columns: 1fr; gap: 32px; padding: 50px 20px; }
-  .newsletter-form { flex-direction: column; }
+  .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .promo-strip { grid-template-columns: 1fr; }
+  .features { grid-template-columns: repeat(2, 1fr); }
+  .testimonials { padding: 50px 20px; }
+  .test-grid { grid-template-columns: 1fr; }
+  .newsletter { grid-template-columns: 1fr; gap: 32px; padding: 50px 20px; }
+  .nl-form { flex-direction: column; }
   footer { padding: 40px 20px 20px; }
-  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
-  .section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
   .cart-sidebar { width: 100%; right: -100%; }
+  .hero-bg-img { width: 100%; opacity: 0.4; }
 }
 </style>
 </head>
 <body>
 
 <!-- TOAST -->
-<div class="toast" id="toast">Added to Cart</div>
+<div class="toast" id="toast">Done</div>
 
 <!-- CART OVERLAY -->
 <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
 
 <!-- CART SIDEBAR -->
 <div class="cart-sidebar" id="cartSidebar">
-  <div class="cart-header">
-    <h3>Your Bag (<span id="cartCountLabel">0</span>)</h3>
-    <button class="cart-close" onclick="closeCart()">✕</button>
+  <div class="cart-head">
+    <h3>Your Bag · <span id="cartCountLabel">0</span></h3>
+    <button class="cart-close-btn" onclick="closeCart()">✕</button>
   </div>
-  <div class="cart-items" id="cartItems">
-    <p style="color:var(--muted);font-size:0.9rem;text-align:center;margin-top:60px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem">Your bag is empty</p>
+  <div class="cart-body" id="cartBody">
+    <p style="color:var(--muted);text-align:center;margin-top:60px;font-size:0.95rem;letter-spacing:1px">Your bag is empty</p>
   </div>
-  <div class="cart-footer">
-    <div class="cart-total">
+  <div class="cart-foot">
+    <div class="cart-subtotal">
       <span>Total</span>
       <span id="cartTotal">₹0</span>
     </div>
-    <button class="cart-checkout" onclick="showToast('Proceeding to checkout...')">Checkout</button>
-    <button class="cart-continue" onclick="closeCart()">Continue Shopping</button>
+    <button class="checkout-btn" onclick="showToast('Proceeding to checkout...')">Checkout →</button>
+    <button class="continue-btn" onclick="closeCart()">Continue Shopping</button>
   </div>
 </div>
 
 <!-- NAV -->
 <nav id="navbar">
-  <a href="#" class="logo">MAK <span>Lifestyle</span></a>
+  <a href="#" class="logo">MAK <span>MEN</span></a>
   <ul class="nav-links">
     <li><a href="#categories">Collections</a></li>
     <li><a href="#products">Shop</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <div class="nav-icons">
-    <button class="nav-icon" onclick="showToast('Search coming soon...')">🔍</button>
-    <button class="nav-icon" onclick="showToast('Wishlist coming soon...')">♡</button>
-    <button class="nav-icon" onclick="openCart()" style="position:relative">
-      🛍️
-      <span class="cart-count" id="cartBadge">0</span>
+  <div class="nav-right">
+    <button class="nav-btn" onclick="showToast('Search coming soon...')">🔍</button>
+    <button class="nav-btn" onclick="showToast('Wishlist coming soon...')">♡</button>
+    <button class="nav-btn" onclick="openCart()" style="position:relative">
+      🛍
+      <span class="cart-badge" id="cartBadge">0</span>
     </button>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-left">
-    <div class="hero-tag">New Collection 2026</div>
-    <h1>Wear Your<br><em>Confidence</em><br>in Style</h1>
-    <p class="hero-desc">Premium ethnic & contemporary fashion from the heart of Delhi. Crafted with love, worn with pride.</p>
-    <div class="hero-buttons">
-      <a href="#products" class="btn-primary">Shop Now</a>
-      <a href="#categories" class="btn-outline">Explore</a>
+  <div class="hero-bg">
+    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=1200&q=80" alt="MAK Men Fashion">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <div class="eyebrow-text">New Collection — Summer 2026</div>
+    </div>
+    <h1>
+      DRESS<br>
+      <span class="outline">LIKE</span><br>
+      <span class="gold">ROYALTY</span>
+    </h1>
+    <p class="hero-desc">Premium men's ethnic and contemporary fashion from Delhi. From sherwanis to streetwear — own every moment.</p>
+    <div class="hero-cta">
+      <a href="#products" class="btn-gold">Shop Now</a>
+      <button class="btn-ghost" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'})">Explore Collection</button>
     </div>
   </div>
-  <div class="hero-right">
-    <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=900&q=80" alt="MAK Lifestyle Fashion">
-    <div class="hero-badge">
-      <div class="hero-badge-title">500+</div>
-      <div class="hero-badge-sub">Happy Customers</div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">800+</div>
+      <div class="stat-label">Happy Men</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">200+</div>
+      <div class="stat-label">Styles</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">5★</div>
+      <div class="stat-label">Rating</div>
     </div>
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="marquee">
-    <span>Free Delivery on Orders Above ₹999</span><span class="dot">✦</span>
-    <span>Premium Quality Fabrics</span><span class="dot">✦</span>
-    <span>Easy Returns Within 7 Days</span><span class="dot">✦</span>
-    <span>COD Available</span><span class="dot">✦</span>
-    <span>New Collection Every Week</span><span class="dot">✦</span>
-    <span>Shop From Delhi to Your Door</span><span class="dot">✦</span>
-    <span>Free Delivery on Orders Above ₹999</span><span class="dot">✦</span>
-    <span>Premium Quality Fabrics</span><span class="dot">✦</span>
-    <span>Easy Returns Within 7 Days</span><span class="dot">✦</span>
-    <span>COD Available</span><span class="dot">✦</span>
-    <span>New Collection Every Week</span><span class="dot">✦</span>
-    <span>Shop From Delhi to Your Door</span><span class="dot">✦</span>
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>Free Delivery Above ₹999</span><span class="ticker-dot"> ✦ </span>
+    <span>COD Available</span><span class="ticker-dot"> ✦ </span>
+    <span>Easy 7-Day Returns</span><span class="ticker-dot"> ✦ </span>
+    <span>Premium Fabrics</span><span class="ticker-dot"> ✦ </span>
+    <span>New Drops Every Week</span><span class="ticker-dot"> ✦ </span>
+    <span>Pan India Delivery</span><span class="ticker-dot"> ✦ </span>
+    <span>Free Delivery Above ₹999</span><span class="ticker-dot"> ✦ </span>
+    <span>COD Available</span><span class="ticker-dot"> ✦ </span>
+    <span>Easy 7-Day Returns</span><span class="ticker-dot"> ✦ </span>
+    <span>Premium Fabrics</span><span class="ticker-dot"> ✦ </span>
+    <span>New Drops Every Week</span><span class="ticker-dot"> ✦ </span>
+    <span>Pan India Delivery</span><span class="ticker-dot"> ✦ </span>
   </div>
 </div>
 
 <!-- CATEGORIES -->
-<section class="categories-section" id="categories">
-  <div class="section-header">
+<section class="categories" id="categories">
+  <div class="cat-header">
     <div>
-      <div class="section-tag">Browse by Category</div>
-      <h2 class="section-title">Shop Our <em>Collections</em></h2>
+      <div class="section-label"><span>Browse by Category</span></div>
+      <h2 class="section-title">SHOP <span class="dim">BY</span> STYLE</h2>
     </div>
-    <a href="#products" class="view-all">View All</a>
+    <a href="#products" class="view-all">View All →</a>
   </div>
   <div class="cat-grid">
+    <div class="cat-card" onclick="filterProducts('Sherwani')">
+      <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=800&q=80" alt="Sherwanis">
+      <div class="cat-overlay"></div>
+      <div class="cat-content">
+        <div class="cat-num">01</div>
+        <div class="cat-name">Sherwanis</div>
+        <div class="cat-count">36 Styles</div>
+      </div>
+      <div class="cat-arrow">→</div>
+    </div>
     <div class="cat-card" onclick="filterProducts('Kurta')">
-      <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&q=80" alt="Kurtas">
-      <div class="cat-info">
-        <div class="cat-name">Kurtas & Sets</div>
-        <div class="cat-count">48 Styles</div>
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="Kurtas">
+      <div class="cat-overlay"></div>
+      <div class="cat-content">
+        <div class="cat-num">02</div>
+        <div class="cat-name">Kurtas</div>
+        <div class="cat-count">52 Styles</div>
       </div>
-    </div>
-    <div class="cat-card" onclick="filterProducts('Saree')">
-      <img src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=400&q=80" alt="Sarees">
-      <div class="cat-info">
-        <div class="cat-name">Sarees</div>
-        <div class="cat-count">32 Styles</div>
-      </div>
-    </div>
-    <div class="cat-card" onclick="filterProducts('Lehenga')">
-      <img src="https://images.unsplash.com/photo-1609325671404-cef6c17e2c41?w=400&q=80" alt="Lehengas">
-      <div class="cat-info">
-        <div class="cat-name">Lehengas</div>
-        <div class="cat-count">24 Styles</div>
-      </div>
+      <div class="cat-arrow">→</div>
     </div>
     <div class="cat-card" onclick="filterProducts('Western')">
-      <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&q=80" alt="Western">
-      <div class="cat-info">
-        <div class="cat-name">Western Wear</div>
-        <div class="cat-count">56 Styles</div>
+      <img src="https://images.unsplash.com/photo-1516257984-b1b4d707412e?w=600&q=80" alt="Western">
+      <div class="cat-overlay"></div>
+      <div class="cat-content">
+        <div class="cat-num">03</div>
+        <div class="cat-name">Western</div>
+        <div class="cat-count">60 Styles</div>
       </div>
+      <div class="cat-arrow">→</div>
     </div>
-    <div class="cat-card" onclick="filterProducts('Dupatta')">
-      <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=400&q=80" alt="Accessories">
-      <div class="cat-info">
-        <div class="cat-name">Accessories</div>
-        <div class="cat-count">40 Styles</div>
+    <div class="cat-card" onclick="filterProducts('Jacket')">
+      <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=600&q=80" alt="Jackets">
+      <div class="cat-overlay"></div>
+      <div class="cat-content">
+        <div class="cat-num">04</div>
+        <div class="cat-name">Jackets</div>
+        <div class="cat-count">28 Styles</div>
       </div>
+      <div class="cat-arrow">→</div>
     </div>
   </div>
 </section>
 
 <!-- PRODUCTS -->
 <section class="products-section" id="products">
-  <div class="section-header">
+  <div class="products-header">
     <div>
-      <div class="section-tag">Handpicked For You</div>
-      <h2 class="section-title">Featured <em>Products</em></h2>
+      <div class="section-label"><span>Handpicked For You</span></div>
+      <h2 class="section-title">FEATURED <span class="dim">DROPS</span></h2>
     </div>
   </div>
-  <div class="products-filter">
+  <div class="filter-row">
     <button class="filter-btn active" onclick="filterProducts('All', this)">All</button>
+    <button class="filter-btn" onclick="filterProducts('Sherwani', this)">Sherwanis</button>
     <button class="filter-btn" onclick="filterProducts('Kurta', this)">Kurtas</button>
-    <button class="filter-btn" onclick="filterProducts('Saree', this)">Sarees</button>
-    <button class="filter-btn" onclick="filterProducts('Lehenga', this)">Lehengas</button>
     <button class="filter-btn" onclick="filterProducts('Western', this)">Western</button>
+    <button class="filter-btn" onclick="filterProducts('Jacket', this)">Jackets</button>
     <button class="filter-btn" onclick="filterProducts('Sale', this)">Sale</button>
   </div>
   <div class="products-grid" id="productsGrid"></div>
 </section>
 
-<!-- BANNER -->
-<section class="banner-section" id="about">
-  <div class="banner-img">
-    <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&q=80" alt="MAK Lifestyle Story">
+<!-- PROMO -->
+<section class="promo-strip" id="about">
+  <div class="promo-img-wrap">
+    <img src="https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?w=900&q=80" alt="MAK Men Premium">
+    <div class="promo-img-tag">Premium Collection</div>
   </div>
-  <div class="banner-content">
-    <div class="section-tag">Our Story</div>
-    <h2 class="banner-title">Fashion Born in the <em>Heart of Delhi</em></h2>
-    <p class="banner-desc">MAK Lifestyle is a Delhi-based fashion brand passionate about bringing premium ethnic and contemporary clothing to every woman's wardrobe. We believe style should be accessible, beautiful, and uniquely yours.</p>
-    <a href="https://www.facebook.com/maklifestyledelhi/" target="_blank" class="btn-primary" style="display:inline-block">Visit Our Page</a>
+  <div class="promo-dark">
+    <div class="section-label"><span>Our Story</span></div>
+    <h2 class="section-title">CRAFTED<br>IN DELHI,<br><span style="color:var(--gold)">WORN</span><br>EVERYWHERE</h2>
+    <p>MAK Men is Delhi's premium destination for men's ethnic and contemporary fashion. From wedding sherwanis to daily-wear kurtas — we've got every occasion covered with premium fabrics and expert craftsmanship.</p>
+    <a href="https://www.facebook.com/maklifestyledelhi/" target="_blank" class="btn-gold">Visit Our Page</a>
+  </div>
+</section>
+<section class="promo-strip">
+  <div class="promo-gold">
+    <div class="section-label"><span>Limited Offer</span></div>
+    <h2 class="section-title" style="color:var(--black);font-size:3.5rem">SALE UP TO<br>50% OFF</h2>
+    <p>Don't miss our biggest sale of the season. Premium men's ethnic wear at unbeatable prices. Grab it before it's gone!</p>
+    <button class="btn-dark" onclick="filterProducts('Sale', null); document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop Sale →</button>
+  </div>
+  <div class="promo-img-wrap">
+    <img src="https://images.unsplash.com/photo-1594938298603-c8148c4b4571?w=900&q=80" alt="Sale Collection">
+    <div class="promo-img-tag" style="background:var(--red)">Upto 50% Off</div>
   </div>
 </section>
 
 <!-- FEATURES -->
-<section class="features-section">
-  <div class="feature-item">
-    <span class="feature-icon">🚚</span>
-    <div class="feature-title">Free Delivery</div>
-    <p class="feature-desc">On all orders above ₹999. Pan India delivery available.</p>
+<section class="features">
+  <div class="feat">
+    <span class="feat-icon">🚚</span>
+    <div class="feat-title">Free Delivery</div>
+    <p class="feat-desc">On orders above ₹999. Pan India delivery, delivered to your door.</p>
   </div>
-  <div class="feature-item">
-    <span class="feature-icon">↩️</span>
-    <div class="feature-title">Easy Returns</div>
-    <p class="feature-desc">7-day hassle-free return policy. No questions asked.</p>
+  <div class="feat">
+    <span class="feat-icon">↩</span>
+    <div class="feat-title">Easy Returns</div>
+    <p class="feat-desc">7-day hassle-free returns. No questions asked policy.</p>
   </div>
-  <div class="feature-item">
-    <span class="feature-icon">💎</span>
-    <div class="feature-title">Premium Quality</div>
-    <p class="feature-desc">Carefully selected fabrics and expert craftsmanship.</p>
+  <div class="feat">
+    <span class="feat-icon">💎</span>
+    <div class="feat-title">Premium Quality</div>
+    <p class="feat-desc">Expert craftsmanship with carefully selected premium fabrics.</p>
   </div>
-  <div class="feature-item">
-    <span class="feature-icon">💳</span>
-    <div class="feature-title">COD Available</div>
-    <p class="feature-desc">Pay on delivery. Safe and secure payment options.</p>
+  <div class="feat">
+    <span class="feat-icon">💳</span>
+    <div class="feat-title">COD Available</div>
+    <p class="feat-desc">Pay on delivery option available. Safe and secure checkout.</p>
   </div>
 </section>
 
 <!-- TESTIMONIALS -->
-<section class="testimonials-section">
-  <div class="section-tag">What They Say</div>
-  <h2 class="section-title">Customer <em>Love</em></h2>
-  <div class="testimonials-grid">
-    <div class="testimonial-card">
+<section class="testimonials">
+  <div class="test-header">
+    <div class="section-label" style="justify-content:center"><span>Customer Reviews</span></div>
+    <h2 class="section-title">WHAT MEN <span class="dim">SAY</span></h2>
+  </div>
+  <div class="test-grid">
+    <div class="test-card">
       <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"The kurta set I ordered was absolutely stunning! Perfect stitching and the fabric quality is incredible. Will definitely order again!"</p>
-      <div class="testimonial-author">Priya Sharma, Delhi</div>
+      <p class="test-text">"The sherwani I ordered for my wedding was absolutely stunning! Perfect fit, incredible fabric quality. Got so many compliments from guests!"</p>
+      <div class="test-author">Rahul Sharma — Delhi</div>
     </div>
-    <div class="testimonial-card">
+    <div class="test-card">
       <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"Fast delivery and the packaging was so beautiful. The lehenga fits perfectly and looks even better in person. Highly recommend MAK Lifestyle!"</p>
-      <div class="testimonial-author">Anita Verma, Noida</div>
+      <p class="test-text">"Best kurta set I've bought online! Delivery was super fast, packaging was great, and the quality is premium. Will be ordering more for sure."</p>
+      <div class="test-author">Akash Verma — Noida</div>
     </div>
-    <div class="testimonial-card">
+    <div class="test-card">
       <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"Best online ethnic wear store! Wore their saree to a wedding and got so many compliments. The colors are vibrant and true to the photos."</p>
-      <div class="testimonial-author">Sunita Gupta, Gurgaon</div>
+      <p class="test-text">"Ordered a western co-ord set and I was blown away by how good it looks in person. Colors are exactly as shown. Highly recommend MAK Men!"</p>
+      <div class="test-author">Vikram Singh — Gurgaon</div>
     </div>
   </div>
 </section>
 
 <!-- NEWSLETTER -->
-<section class="newsletter-section" id="contact">
+<section class="newsletter" id="contact">
   <div>
-    <div class="section-tag">Stay Updated</div>
-    <h2 class="newsletter-title">Get <em>Exclusive</em> Offers & New Arrivals</h2>
-    <p class="newsletter-desc">Subscribe to our newsletter and be the first to know about new collections, flash sales, and styling tips.</p>
+    <div class="section-label"><span>Stay Updated</span></div>
+    <h2 class="nl-title">GET <span>EXCLUSIVE</span> DROPS FIRST</h2>
+    <p class="nl-desc">Subscribe to be the first to know about new arrivals, flash sales, and styling tips crafted for modern men.</p>
   </div>
   <div>
-    <div class="newsletter-form">
-      <input type="email" placeholder="Your email address">
-      <button onclick="showToast('Subscribed successfully!')">Subscribe</button>
+    <div class="nl-form">
+      <input type="email" placeholder="Enter your email address">
+      <button onclick="showToast('Subscribed! Stay stylish.')">Subscribe →</button>
     </div>
-    <p style="font-size:0.75rem;color:var(--muted);margin-top:12px">No spam. Unsubscribe anytime. By subscribing you agree to our Privacy Policy.</p>
+    <p style="font-size:0.75rem;color:var(--muted);margin-top:12px;letter-spacing:0.5px">No spam. Unsubscribe anytime. Privacy guaranteed.</p>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-top">
+  <div class="footer-grid">
     <div class="footer-brand">
-      <a href="#" class="logo">MAK <span style="color:var(--gold)">Lifestyle</span></a>
-      <p>Premium ethnic & contemporary fashion from Delhi. Bringing style to every wardrobe across India.</p>
-      <div class="social-links">
-        <a href="https://www.facebook.com/maklifestyledelhi/" target="_blank" class="social-link">f</a>
-        <a href="#" class="social-link">in</a>
-        <a href="#" class="social-link">ig</a>
-        <a href="https://wa.me/919999999999" class="social-link">wa</a>
+      <a href="#" class="footer-logo">MAK <span>MEN</span></a>
+      <p>Premium ethnic and contemporary men's fashion from the heart of Delhi. Crafted for every occasion, every man.</p>
+      <div class="socials">
+        <a href="https://www.facebook.com/maklifestyledelhi/" target="_blank" class="social">fb</a>
+        <a href="#" class="social">in</a>
+        <a href="#" class="social">ig</a>
+        <a href="https://wa.me/919999999999" class="social">wa</a>
       </div>
     </div>
     <div class="footer-col">
       <h4>Shop</h4>
-      <a href="#">Kurtas & Sets</a>
-      <a href="#">Sarees</a>
-      <a href="#">Lehengas</a>
+      <a href="#">Sherwanis</a>
+      <a href="#">Kurta Sets</a>
       <a href="#">Western Wear</a>
+      <a href="#">Jackets</a>
       <a href="#">Accessories</a>
       <a href="#">Sale</a>
     </div>
     <div class="footer-col">
       <h4>Help</h4>
       <a href="#">Track Order</a>
-      <a href="#">Returns</a>
+      <a href="#">Returns & Refunds</a>
       <a href="#">Size Guide</a>
       <a href="#">FAQs</a>
       <a href="#">Contact Us</a>
@@ -1183,53 +1329,58 @@ footer {
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 MAK Lifestyle. All rights reserved.</span>
+    <span>© 2026 MAK Men · All Rights Reserved</span>
     <span>Made with ❤️ in Delhi</span>
   </div>
 </footer>
 
 <script>
-// PRODUCTS DATA
 const products = [
-  { id:1, name:"Floral Anarkali Kurta", sub:"Cotton Blend · S M L XL", price:1299, old:1899, cat:"Kurta", badge:"new-in", label:"New In", img:"https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400&q=80" },
-  { id:2, name:"Banarasi Silk Saree", sub:"Pure Silk · Free Size", price:3499, old:4999, cat:"Saree", badge:"sale", label:"Sale", img:"https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=400&q=80" },
-  { id:3, name:"Bridal Lehenga Set", sub:"Georgette · S M L", price:5999, old:8999, cat:"Lehenga", badge:"sale", label:"Sale", img:"https://images.unsplash.com/photo-1609325671404-cef6c17e2c41?w=400&q=80" },
-  { id:4, name:"Printed Co-ord Set", sub:"Rayon · XS S M L XL", price:1599, old:null, cat:"Western", badge:"new-in", label:"New In", img:"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&q=80" },
-  { id:5, name:"Embroidered Kurta", sub:"Cotton · S M L XL XXL", price:899, old:1299, cat:"Kurta", badge:"sale", label:"Sale", img:"https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=400&q=80" },
-  { id:6, name:"Chiffon Party Saree", sub:"Chiffon · Free Size", price:2299, old:null, cat:"Saree", badge:"new-in", label:"New In", img:"https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=400&q=80" },
-  { id:7, name:"Sharara Set", sub:"Net Fabric · S M L", price:2899, old:3999, cat:"Lehenga", badge:"", label:"", img:"https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=400&q=80" },
-  { id:8, name:"Denim Jacket Dress", sub:"Denim · XS S M L XL", price:1899, old:2499, cat:"Western", badge:"sale", label:"Sale", img:"https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=400&q=80" },
+  { id:1, name:"Royal Sherwani Set", sub:"Silk Blend · S M L XL XXL", price:5999, old:8999, cat:"Sherwani", badge:"hot", label:"Bestseller", img:"https://images.unsplash.com/photo-1617137968427-85924c800a22?w=500&q=80" },
+  { id:2, name:"Classic Kurta Pajama", sub:"Cotton · S M L XL XXL", price:1299, old:1799, cat:"Kurta", badge:"sale", label:"Sale", img:"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80" },
+  { id:3, name:"Slim Fit Blazer", sub:"Premium Wool · S M L XL", price:3499, old:null, cat:"Western", badge:"new", label:"New In", img:"https://images.unsplash.com/photo-1516257984-b1b4d707412e?w=500&q=80" },
+  { id:4, name:"Biker Leather Jacket", sub:"Faux Leather · S M L XL", price:2899, old:3999, cat:"Jacket", badge:"sale", label:"Sale", img:"https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=500&q=80" },
+  { id:5, name:"Embroidered Sherwani", sub:"Georgette · S M L XL", price:7499, old:10999, cat:"Sherwani", badge:"sale", label:"Sale", img:"https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?w=500&q=80" },
+  { id:6, name:"Nehru Jacket Set", sub:"Velvet · S M L XL XXL", price:2199, old:null, cat:"Kurta", badge:"new", label:"New In", img:"https://images.unsplash.com/photo-1594938298603-c8148c4b4571?w=500&q=80" },
+  { id:7, name:"Cargo Jogger Set", sub:"Flex Cotton · XS S M L XL", price:1699, old:2299, cat:"Western", badge:"sale", label:"Sale", img:"https://images.unsplash.com/photo-1552346154-21d32810aba3?w=500&q=80" },
+  { id:8, name:"Denim Trucker Jacket", sub:"Raw Denim · S M L XL", price:2499, old:null, cat:"Jacket", badge:"new", label:"New In", img:"https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=500&q=80" },
 ];
 
 let cart = [];
-let activeFilter = 'All';
 
 function renderProducts(filter) {
   const grid = document.getElementById('productsGrid');
-  const filtered = filter === 'All' ? products : filter === 'Sale' ? products.filter(p => p.badge === 'sale') : products.filter(p => p.cat === filter);
+  const filtered = filter === 'All' ? products
+    : filter === 'Sale' ? products.filter(p => p.badge === 'sale')
+    : products.filter(p => p.cat === filter);
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<p style="color:var(--muted);grid-column:1/-1;text-align:center;padding:40px;letter-spacing:2px;font-size:0.9rem">NO ITEMS IN THIS CATEGORY</p>';
+    return;
+  }
+
   grid.innerHTML = filtered.map(p => `
     <div class="product-card">
       <div class="product-img">
         <img src="${p.img}" alt="${p.name}" loading="lazy">
-        ${p.badge ? `<div class="product-badge ${p.badge}">${p.label}</div>` : ''}
+        ${p.badge ? `<div class="p-badge ${p.badge}">${p.label}</div>` : ''}
         <div class="product-actions">
-          <button class="action-btn" onclick="addToCart(${p.id})">Add to Bag</button>
-          <button class="action-btn wish" onclick="showToast('Added to Wishlist ♡')">♡</button>
+          <button class="p-action-btn" onclick="addToCart(${p.id})">Add to Bag</button>
+          <button class="p-action-btn wish" onclick="showToast('Added to Wishlist ♡')">♡</button>
         </div>
       </div>
       <div class="product-name">${p.name}</div>
       <div class="product-sub">${p.sub}</div>
       <div class="product-price">
-        <span class="price-current">₹${p.price.toLocaleString()}</span>
-        ${p.old ? `<span class="price-old">₹${p.old.toLocaleString()}</span>` : ''}
-        ${p.old ? `<span class="price-discount">${Math.round((1-p.price/p.old)*100)}% off</span>` : ''}
+        <span class="p-price">₹${p.price.toLocaleString()}</span>
+        ${p.old ? `<span class="p-old">₹${p.old.toLocaleString()}</span>` : ''}
+        ${p.old ? `<span class="p-off">${Math.round((1-p.price/p.old)*100)}% off</span>` : ''}
       </div>
     </div>
   `).join('');
 }
 
 function filterProducts(cat, btn) {
-  activeFilter = cat;
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   if (btn) btn.classList.add('active');
   renderProducts(cat);
@@ -1242,7 +1393,7 @@ function addToCart(id) {
   if (existing) existing.qty++;
   else cart.push({ ...p, qty: 1 });
   updateCart();
-  showToast(`${p.name} added to bag!`);
+  showToast(`${p.name} added!`);
   openCart();
 }
 
@@ -1252,22 +1403,22 @@ function updateCart() {
   document.getElementById('cartBadge').textContent = count;
   document.getElementById('cartCountLabel').textContent = count;
   document.getElementById('cartTotal').textContent = `₹${total.toLocaleString()}`;
-  const itemsEl = document.getElementById('cartItems');
-  if (cart.length === 0) {
-    itemsEl.innerHTML = '<p style="color:var(--muted);text-align:center;margin-top:60px;font-family:\'Cormorant Garamond\',serif;font-style:italic;font-size:1.1rem">Your bag is empty</p>';
+  const body = document.getElementById('cartBody');
+  if (!cart.length) {
+    body.innerHTML = '<p style="color:var(--muted);text-align:center;margin-top:60px;font-size:0.95rem;letter-spacing:1px">Your bag is empty</p>';
     return;
   }
-  itemsEl.innerHTML = cart.map(item => `
+  body.innerHTML = cart.map(item => `
     <div class="cart-item">
       <img class="cart-item-img" src="${item.img}" alt="${item.name}">
       <div class="cart-item-info">
-        <div class="cart-item-name">${item.name}</div>
-        <div class="cart-item-detail">${item.sub}</div>
-        <div class="cart-item-price">₹${item.price.toLocaleString()}</div>
-        <div class="cart-item-qty">
-          <button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button>
-          <span class="qty-num">${item.qty}</span>
-          <button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
+        <div class="cii-name">${item.name}</div>
+        <div class="cii-detail">${item.sub}</div>
+        <div class="cii-price">₹${item.price.toLocaleString()}</div>
+        <div class="qty-row">
+          <button class="q-btn" onclick="changeQty(${item.id},-1)">−</button>
+          <span class="q-num">${item.qty}</span>
+          <button class="q-btn" onclick="changeQty(${item.id},1)">+</button>
         </div>
       </div>
     </div>
@@ -1293,19 +1444,19 @@ function closeCart() {
   document.body.style.overflow = '';
 }
 
+let toastTimer;
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2500);
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
 }
 
-// Navbar scroll
 window.addEventListener('scroll', () => {
-  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 
-// Init
 renderProducts('All');
 </script>
 </body>
